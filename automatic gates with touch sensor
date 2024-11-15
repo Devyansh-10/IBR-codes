@@ -1,0 +1,24 @@
+#include <Servo.h>
+
+#define TOUCH_SENSOR_PIN 2
+
+Servo servo1;
+Servo servo2;
+
+void setup() {
+  pinMode(TOUCH_SENSOR_PIN, INPUT);
+  servo1.attach(9);
+  servo2.attach(10);
+  servo1.write(0);
+  servo2.write(0);
+}
+
+void loop() {
+  if (digitalRead(TOUCH_SENSOR_PIN) == HIGH) {  // Detects touch
+    servo1.write(90);
+    servo2.write(90);
+    delay(3000);  // Keep the gate open for 3 seconds
+    servo1.write(0);
+    servo2.write(0);
+  }
+}
